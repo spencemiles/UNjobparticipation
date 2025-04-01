@@ -95,6 +95,20 @@
                 font-size: 1rem;
             }
         }
+        #copyButton {
+    padding: 10px 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+#copyButton:hover {
+    background-color: #218838;
+}
+
     </style>
 </head>
 <body>
@@ -121,6 +135,8 @@
         <button onclick="generatePrankLink()">Generate Prank Link</button>
         <div id="linkSection" style="display: none;">
             <p>Here's your prank link: <span id="prankLink"></span></p>
+            <button id="copyButton" onclick="copyPrankLink()">Copy Link</button>
+
         </div>
     </div>
 
@@ -129,6 +145,13 @@
     </div>
 
     <script>
+        function copyPrankLink() {
+    let prankLink = document.getElementById("prankLink").textContent;
+    navigator.clipboard.writeText(prankLink).then(() => {
+        alert("Link copied to clipboard!");
+    });
+}
+
         function revealPrank() {
             document.getElementById("message").style.display = "none";
             document.getElementById("prankContent").style.display = "block";
