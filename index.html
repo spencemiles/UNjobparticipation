@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official UN Job Offer</title>
+    <style>
+        body {
+            background-color: white;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header img {
+            max-width: 200px;
+        }
+
+        h1 {
+            color: #005BAC;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .content {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        button {
+            background-color: #005BAC;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #003f6a;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+
+        #prankContent {
+            display: none;
+            text-align: center;
+        }
+
+        #prankContent img {
+            width: 80%;
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+
+            input {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://www.apc.org/sites/default/files/images/UNLogo.png" alt="UN Logo">
+        <h1>Official UN Job Offer</h1>
+    </header>
+
+    <div class="content" id="message">
+        <p>Congratulations Samuel Kithanze,</p>
+        <p>You have been selected to participate in the United Nations project to supply essential commodities worldwide. Your payment for this job will be 150,000 shillings per month.</p>
+        <p>Please visit the site to inquire more details and complete the registration.</p>
+        <button onclick="revealPrank()">Click Here to Inquire</button>
+    </div>
+
+    <div id="prankContent">
+        <h1>You Have Been Pranked! 🎉🤪🤪</h1>
+        <p>Ha! We got you! This was just an April Fool's joke!</p>
+        <img src="https://media.giphy.com/media/dxn8u6XDEyRSg/giphy.gif" alt="You got pranked">
+        <p>Now, customize the prank message and send it to others!</p>
+        <p id="prankMessage"></p>
+        <input type="text" id="nameInput" placeholder="Enter a name to prank" />
+        <button onclick="generatePrankLink()">Generate Prank Link</button>
+        <div id="linkSection" style="display: none;">
+            <p>Here's your prank link: <span id="prankLink"></span></p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>For inquiries, contact the Unithed motions Human Resources Department</p>
+    </div>
+
+    <script>
+        function revealPrank() {
+            document.getElementById("message").style.display = "none";
+            document.getElementById("prankContent").style.display = "block";
+        }
+
+        function generatePrankLink() {
+            const name = document.getElementById("nameInput").value;
+            if (name) {
+                const prankMessage = "Congratulations " + name + ",\nYou have been selected for a United Nations job with a salary of 150,000 shillings.";
+                document.getElementById("prankMessage").innerText = prankMessage;
+
+                const prankUrl = window.location.href.split('?')[0] + "?name=" + encodeURIComponent(name);
+                document.getElementById("prankLink").innerText = prankUrl;
+                document.getElementById("prankLink").href = prankUrl;
+                document.getElementById("prankLink").style.color = "#005BAC";
+                document.getElementById("linkSection").style.display = "block";
+            } else {
+                alert("Please enter a name before generating the prank link!");
+            }
+        }
+
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        window.onload = function() {
+            const name = getQueryParam('name');
+            if (name) {
+                document.getElementById("message").style.display = "none";
+                document.getElementById("prankContent").style.display = "block";
+                const prankMessage = "Congratulations " + name + ",\nYou have been selected for a United Nations job with a salary of 150,000 shillings.";
+                document.getElementById("prankMessage").innerText = prankMessage;
+            }
+        };
+    </script>
+
+</body>
+</html>
+
+
